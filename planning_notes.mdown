@@ -1,0 +1,18 @@
+DONE
+load <filename>
+help
+help <commancd>
+
+
+NOT DONE
+queue count
+queue clear
+queue print
+queue print by <attribute>
+queue save to <filename.csv>
+find <attribute> <criteria>
+Generic Form:
+[load|help|queue|find] (filename|command|count|clear|print|save|"attribute")
+
+
+
