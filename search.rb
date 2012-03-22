@@ -14,8 +14,7 @@ class Search
     when "city" then city_find(parameters[1..-1].join(" "))
     when "state" then state_find(parameters[1])
     when "zipcode" then zipcode_find(parameters[1])
-    else 
-      "This is a bogus command, please try again."
+    else "This is a bogus command, please try again."
     end
   end
 
@@ -26,7 +25,7 @@ class Search
 
   def self.first_name_find(parameters)
     @queue.replace([])
-    @attendees.each do |a| 
+    @attendees.each do |a|
       @queue << a if a.first_name =~ /^#{parameters}$/i
     end
     "I found #{@queue.count} records matching your search"
@@ -34,7 +33,7 @@ class Search
 
   def self.last_name_find(parameters)
     @queue.replace([])
-    @attendees.each do |a| 
+    @attendees.each do |a|
       @queue << a if a.last_name =~ /^#{parameters}$/i
     end
     "I found #{@queue.count} records matching your search"
@@ -42,7 +41,7 @@ class Search
 
   def self.email_address_find(parameters)
     @queue.replace([])
-    @attendees.each do |a| 
+    @attendees.each do |a|
       @queue << a if a.email_address =~ /^#{parameters}$/i
     end
     "I found #{@queue.count} records matching your search"
@@ -50,7 +49,7 @@ class Search
 
   def self.phone_number_find(parameters)
     @queue.replace([])
-    @attendees.each do |a| 
+    @attendees.each do |a|
       @queue << a if a.phone_number =~ /^#{parameters}$/i
     end
     "I found #{@queue.count} records matching your search"
@@ -58,7 +57,7 @@ class Search
 
   def self.street_find(parameters)
     @queue.replace([])
-    @attendees.each do |a| 
+    @attendees.each do |a|
       @queue << a if a.street_find =~ /^#{parameters}$/i
     end
     "I found #{@queue.count} records matching your search"
@@ -66,7 +65,7 @@ class Search
 
   def self.city_find(parameters)
     @queue.replace([])
-    @attendees.each do |a| 
+    @attendees.each do |a|
       @queue << a if a.city =~ /^#{parameters}$/i
     end
     "I found #{@queue.count} records matching your search"
@@ -74,7 +73,7 @@ class Search
 
   def self.state_find(parameters)
     @queue.replace([])
-    @attendees.each do |a| 
+    @attendees.each do |a|
       @queue << a if a.state =~ /^#{parameters}$/i
     end
     "I found #{@queue.count} records matching your search"
@@ -82,7 +81,7 @@ class Search
 
   def self.zipcode_find(parameters)
     @queue.replace([])
-    @attendees.each do |a| 
+    @attendees.each do |a|
       @queue << a if a.zipcode =~ /^#{parameters}$/i
     end
     "I found #{@queue.count} records matching your search"

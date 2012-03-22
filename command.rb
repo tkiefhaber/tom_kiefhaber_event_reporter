@@ -17,22 +17,14 @@ class Command
 
   attr_accessor :queue, :attendees
 
-  def self.valid?(command)
-    ALL_COMMANDS.keys.include?(command)
-  end
-
   def initialize
     @queue = []
     @attendees = []
   end
 
   def execute(command, parameters)
-    if command == "load"
-      parameters[0] ||= "event_attendees.csv"
-      if EventDataParser.valid_parameters?(parameters)
-        @attendees = EventDataParser.file_load(parameters[0])
-        "Parsed #{@attendees.count} attendees from the file."
-      end
+    if command == "load" && parameters[0] ||= "event_attendees.csv"
+      validate(command, parameters)
     elsif command == "queue" && Queue.valid_parameters?(parameters)
       Queue.new.call(self, parameters)
     elsif command == "help" && parameters.count == 0
@@ -41,12 +33,24 @@ class Command
       Help.for(parameters)
     elsif command == "find" && Search.valid_parameters?(parameters)
       Search.for(self, parameters)
-    else
-      error_message_for(command)
+    else error_message_for(command)
     end
   end
 
   def error_message_for(command)
     "Sorry, you specified invalid arguments for #{command}."
+  end
+
+  def parse_load(command, parameters)
+    if EventDataParser.valid_parameters?(parameters)
+        @attendees = EventDataParser.file_load(parameters[0])
+        "Parsed #{@attendees.count} attendees from the file."
+    end
+  end
+
+  def validate(command, parameters)
+    if EventDataParser.valid_parameters?(parameters)
+        parse_load(command, parameters)
+    end
   end
 end

@@ -10,7 +10,6 @@ module Kernel
   def logger
     @@logger ||= Logger.new("dev.log")
   end
-  
 end
 
 module EventReporter

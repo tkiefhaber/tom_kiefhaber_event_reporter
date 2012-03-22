@@ -1,14 +1,12 @@
 require './command'
 
 class Attendee
-  attr_accessor :registration_date, :first_name, :last_name, :email_address, 
+  attr_accessor :registration_date, :first_name, :last_name, :email_address,
                 :phone_number, :street, :city, :state, :zipcode, :identity
 
-  INVALID_ZIPCODE = "00000"
   IDENTITY = ["registration_date", "first_name", "last_name",
-              "email_address", "phone_number", "street", "city", 
+              "email_address", "phone_number", "street", "city",
               "state", "zipcode"]
-  
 
   def initialize(data)
     self.registration_date = data[:regdate]
@@ -24,7 +22,8 @@ class Attendee
   end
 
   def zipcode_clean(zipcode)
-    zipcode.nil? ? INVALID_ZIPCODE : "%05d" % zipcode.to_s
+    zero_zips = "0" * 5 + zipcode.to_s
+    zero_zips = zero_zips[-5..-1]
   end
 
   def phone_number_clean(phone_number)
